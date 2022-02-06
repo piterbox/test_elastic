@@ -19,3 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('search', [\App\Http\Controllers\ArticleController::class, 'search']);
+Route::post('create', [\App\Http\Controllers\ArticleController::class, 'create']);
+Route::put('update/{id}', [\App\Http\Controllers\ArticleController::class, 'update']);
+Route::delete('delete/{id}', [\App\Http\Controllers\ArticleController::class, 'delete']);

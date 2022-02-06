@@ -3,8 +3,8 @@
 
 namespace App\Service\Search;
 
+use App\Models\Article\Article;
 use Elasticsearch\Client;
-use Illuminate\Database\Eloquent\Model;
 
 class ElasticSearchObserver
 {
@@ -16,7 +16,10 @@ class ElasticSearchObserver
         $this->elasticSearch = $client;
     }
 
-    public function saved(Model $model)
+    /**
+     * @param Article $model
+     */
+    public function saved(Article $model)
     {
         $this->elasticSearch->index([
             'index' => $model->getSearchIndex(),
@@ -26,7 +29,10 @@ class ElasticSearchObserver
         ]);
     }
 
-    public function deleted(Model $model)
+    /**
+     * @param Article $model
+     */
+    public function deleted(Article $model)
     {
         $this->elasticSearch->delete([
             'index' => $model->getSearchIndex(),
